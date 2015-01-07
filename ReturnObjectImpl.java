@@ -4,13 +4,13 @@
 public class ReturnObjectImpl implements ReturnObject {
 
     private Object object;
-    private String errorMessage;
+    private ErrorMessage errorMessage;
 
 
 
-    public ReturnObjectImpl(Object returnObject, String errorMessage) {
+    public ReturnObjectImpl(Object returnObject, String eMessage) {
         this.object = returnObject;
-        this.errorMessage = errorMessage;
+        this.errorMessage = getError();
     }
 
     @Override
@@ -23,7 +23,8 @@ public class ReturnObjectImpl implements ReturnObject {
     public ErrorMessage getError() {
         boolean value = hasError();
 
-        if ( value == true )return ErrorMessage.NO_ERROR ;
+        if ( value == false )return ErrorMessage.NO_ERROR;
+
         else return null;
     }
 
