@@ -1,25 +1,32 @@
 /**
  * Created by devon on 07/01/2015.
  */
-public class ReturnObjectImpl {
+public class ReturnObjectImpl implements ReturnObject {
 
-    public interface  ReturnObject {}
+    private Object object;
+    private String errorMessage;
 
+    public ReturnObjectImpl(Object returnObject, String errorMessage) {
+        this.object = returnObject;
+        this.errorMessage = errorMessage;
+    }
 
+    @Override
+    public boolean hasError() {
+        if (getReturnValue().equals(this.object))return false;
+        else return false;
+    }
 
-    public boolean hasError {}
+    @Override
+    public ErrorMessage getError() {
 
+        if (!this.equals(null)) return ErrorMessage.NO_ERROR ;
+        else return null;
+    }
 
-
-    public ErrorMessage getError {}
-
-
-
-    public Object getReturnValue {}
-
-
-
-
-
+    @Override
+    public Object getReturnValue() {
+        if (!this.equals(null)) return this.object ;
+        else return null;
+    }
 }
-

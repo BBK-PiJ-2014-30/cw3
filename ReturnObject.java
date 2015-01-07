@@ -4,7 +4,7 @@
  *
  * @author PiJ
  */
-public interface ReturnObject {
+     public interface ReturnObject {
 	/**
 	 * Returns whether there has been an error
 	 * @return whether there has been an error
