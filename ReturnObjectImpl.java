@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 /**
  * Created by devon on 07/01/2015.
  */
@@ -8,7 +10,7 @@ public class ReturnObjectImpl implements ReturnObject {
 
 
 
-    public ReturnObjectImpl(Object returnObject, String eMessage) {
+    public ReturnObjectImpl( Object returnObject) {
         this.object = returnObject;
         this.errorMessage = getError();
     }
