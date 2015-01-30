@@ -3,13 +3,14 @@
  */
 public class ArrayListImpI implements List {
 
-    private static int  position = 0;
-    private static int limit =10;
+
+    private static int limit;
     int length;
 
     private Object list [];
 
     public ArrayListImpI(){
+        this.limit = 10;
 
         this.list = new Object[limit];
 
@@ -59,8 +60,8 @@ public class ArrayListImpI implements List {
     public ReturnObject get(int index) {
 
         if( this.error(index).equals(ErrorMessage.NO_ERROR)){
-            return new ReturnObjectImpl (error(index));
-            this.list[index]= null;
+            return new ReturnObjectImpl (this.list[index],error(index));
+            
         }
 
         return new ReturnObjectImpl( error(index));
@@ -69,10 +70,14 @@ public class ArrayListImpI implements List {
     @Override
     public ReturnObject remove(int index) {
         if ( error(index).equals(ErrorMessage.NO_ERROR)){
-            Object o = this.list[index];
-            this.list[index] = null;
+            Object o = new Object();
+            this.list [index]= o;
+            delete(index);
 
-            return new ReturnObjectImpl(o);}
+            return new ReturnObjectImpl (o);
+
+
+            }
             return new ReturnObjectImpl(error(index));
 
 
@@ -140,7 +145,38 @@ public class ArrayListImpI implements List {
             return ErrorMessage.INVALID_ARGUMENT;}
         return null;
     }
+    public void delete (int index ){
+        int index1 = index;
+        if ( size()-1 == index){
+            this.list[index]= this.list[index+1];
+
+        }
+        if (size()-1 > index) {
+            while (index != size() - 1) {
+                this.list[index] = this.list[index1++];
+                index++;
+            }
+        }
+        if ( size()+1 > this.list.length) {
+            int size = limit - 1 + 10;
+            Object[] o = new Object[size];
+            this.limit = size;
+            o = this.list;
+            this.list = o;
+
+            while (index != size() - 1) {
+                this.list[index1] = this.list[index++];
+                index1++;
+            }
+
+        }
+
+
+
+            }
 }
+
+
 
 
 
