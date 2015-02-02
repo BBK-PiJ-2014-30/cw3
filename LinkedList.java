@@ -2,9 +2,10 @@
  * Created by devon on 31/01/2015.
  */
 public class LinkedList implements List {
-    Object o;
-    LinkedList next;
-    int size;
+    private Object o;
+    private LinkedList next;
+    private int size=0;
+    private LinkedList front;
 
     public LinkedList() {
         size++;
@@ -12,9 +13,9 @@ public class LinkedList implements List {
 
 
     public LinkedList(Object o) {
-        this.next = null;
-        this.o = o;
 
+        this.o = o;
+        this.next = null;
 
     }
 
@@ -44,7 +45,7 @@ public class LinkedList implements List {
 
         LinkedList runner;
         runner = next;
-        int counter = 0;
+
         int position = size() - index;
 
 
@@ -55,16 +56,28 @@ public class LinkedList implements List {
             return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
 
 
-        } else while (counter != position) {
+        } else for(int counter =1; counter<index; counter++ ) {
             runner = runner.next;
-            counter++;}
+           }
+            size--;
             return new ReturnObjectImpl(runner);
 
 
         }
 
         public ReturnObject remove ( int index){
-            return null;
+            LinkedList runner = next;
+            if ( index < 1 || index > size()) return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
+            for ( int i =1; i < index; i++){
+                runner = runner.next;
+
+
+            }
+            runner = runner.next.next;
+            LinkedList newNode = runner;
+            size--;
+            return new ReturnObjectImpl( newNode);
+
         }
 
 
@@ -72,7 +85,7 @@ public class LinkedList implements List {
              int counter = size()-index;
             LinkedList newNode = new LinkedList(item);
 
-            LinkedList front;
+
             LinkedList previous;
             LinkedList copy;
             previous = front;
@@ -80,6 +93,7 @@ public class LinkedList implements List {
             copy = front.next;
             if ( index > size()|| index <=0){
                 return new ReturnObjectImpl (ErrorMessage.INDEX_OUT_OF_BOUNDS);}
+            if ( item.equals(null))return new ReturnObjectImpl( ErrorMessage.INVALID_ARGUMENT);
 
             else {
                 while (counter != 0) {
@@ -91,7 +105,8 @@ public class LinkedList implements List {
                 }
 
                 previous.next = newNode;
-                newNode = copy;
+                newNode.next = copy;
+                size++;
                 return new ReturnObjectImpl(previous.next);
 
             }
@@ -103,6 +118,21 @@ public class LinkedList implements List {
 
 
     public ReturnObject add (Object item){
-            return null;
+
+        if ( item.equals(null))return new ReturnObjectImpl ( ErrorMessage.INVALID_ARGUMENT);
+        LinkedList newNode = new LinkedList(item);
+        LinkedList runner = next;
+        while ( runner.next!= null){
+            runner = runner.next;
         }
+
+
+        runner.next = newNode;
+        return new ReturnObjectImpl(newNode);
+        }
+
+
+
+
+
     }
