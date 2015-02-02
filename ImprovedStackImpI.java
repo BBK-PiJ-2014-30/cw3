@@ -3,49 +3,47 @@
  */
 public class ImprovedStackImpI implements ImprovedStack {
     private List list;
-    private ImprovedStackImpI[] a;
 
-    ImprovedStackImpI (List list){
-        this.list = list;
+
+    public ImprovedStackImpI (){
+        this.list = new ArrayList();
 
 
 
     }
 
-    public ImprovedStackImpI() {
 
-        a = new ImprovedStackImpI [list.size()-1];
-    }
 
     @Override
     public ImprovedStack reverse() {
 
 
+        if ( list.isEmpty()) {return  null;}
+
 
         for ( int i = list.size(); i < -1; i--) {
 
 
-            push(list.get(i).getReturnValue());
-        }
+
+         ReturnObject a = list.get(i);
+            list.add(a);}
 
 
-        return null;
+
+
+
+
+            return (ImprovedStack) list;
+
     }
 
     @Override
     public void remove(Object object) {
-        int counter;
+
         for ( int i =0; i< size();i++ ){
-            counter = i;
 
-            if ( this.list.get(i).getReturnValue().equals(object)) {
-                while (i < size()) {
-                    ReturnObject a = this.list.get(i);
 
-                    a = this.list.get(counter++);
-                    i++;
-                }
-            }
+            if ( this.list.get(i).getReturnValue().equals(object)) list.remove(i);
 
 
 
@@ -57,28 +55,50 @@ public class ImprovedStackImpI implements ImprovedStack {
 
     @Override
     public boolean isEmpty() {
-        return false;
+        if ( list.size() == 0){
+        return true;}
+        else return false;
     }
 
     @Override
     public int size() {
-        return 0;
+
+        return list.size();
     }
 
     @Override
     public void push(Object item) {
-        int i =0;
-        a[i++] = item;
+        list.add(item);
+
+
+
+
 
     }
 
     @Override
     public ReturnObject top() {
-        return null;
-    }
 
-    @Override
-    public ReturnObject pop() {
-        return null;
+        if (list.isEmpty() == true)
+        {return new ReturnObjectImpl(list.get(size() - 1));}
+         else
+        {return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);}
+        }
+
+        @Override
+        public ReturnObject pop () {
+            ReturnObject o = list.get(size() - 1);
+
+            if (list.isEmpty()) return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
+             else {
+
+                list.remove(list.size()-1);
+                return new ReturnObjectImpl(o);
+
+
+        }
+
     }
 }
+
+
