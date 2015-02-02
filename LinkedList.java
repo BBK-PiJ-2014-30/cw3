@@ -2,13 +2,14 @@
  * Created by devon on 31/01/2015.
  */
 public class LinkedList implements List {
+
     private Object o;
     private LinkedList next;
-    private int size=0;
+
     private LinkedList front;
 
     public LinkedList() {
-        size++;
+
     }
 
 
@@ -46,7 +47,7 @@ public class LinkedList implements List {
         LinkedList runner;
         runner = next;
 
-        int position = size() - index;
+
 
 
         if (isEmpty()) {
@@ -56,10 +57,10 @@ public class LinkedList implements List {
             return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
 
 
-        } else for(int counter =1; counter<index; counter++ ) {
+        } else for(int counter =0; counter<index; counter++ ) {
             runner = runner.next;
            }
-            size--;
+
             return new ReturnObjectImpl(runner);
 
 
@@ -75,7 +76,7 @@ public class LinkedList implements List {
             }
             runner = runner.next.next;
             LinkedList newNode = runner;
-            size--;
+
             return new ReturnObjectImpl( newNode);
 
         }
@@ -85,7 +86,7 @@ public class LinkedList implements List {
              int counter = size()-index;
             LinkedList newNode = new LinkedList(item);
 
-
+            front = next;
             LinkedList previous;
             LinkedList copy;
             previous = front;
@@ -106,7 +107,7 @@ public class LinkedList implements List {
 
                 previous.next = newNode;
                 newNode.next = copy;
-                size++;
+
                 return new ReturnObjectImpl(previous.next);
 
             }

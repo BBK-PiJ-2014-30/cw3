@@ -22,7 +22,7 @@ public interface FunctionalList extends List {
      * @return a copy of the element at the beginning of the list or 
      *         an error if the list is empty.
      */
-    public ReturnObject head();
+    public Object head();
 
     /**
      * Returns a list with the elements in this list except the

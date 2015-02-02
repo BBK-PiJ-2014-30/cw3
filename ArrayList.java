@@ -4,8 +4,8 @@
 public class ArrayList implements List {
 
 
-    private static int limit;// array size
-    static int s = 0;       // keeps track of size of array
+    private static int limit;
+
 
     private Object list[];
 
@@ -20,7 +20,7 @@ public class ArrayList implements List {
     public ArrayList(Object[] list) {
 
         this.list = new Object[limit];
-        s++;
+
 
 
     }

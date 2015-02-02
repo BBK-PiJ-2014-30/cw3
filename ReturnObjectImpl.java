@@ -13,6 +13,11 @@ public class ReturnObjectImpl implements ReturnObject {
     public ReturnObjectImpl( Object returnObject) {
         this.object = returnObject;
         this.errorMessage = getError();
+
+    }
+    public ReturnObjectImpl ( Object returnObject, ErrorMessage errorMessage){
+        this.object = returnObject;
+        this.errorMessage =getError();
     }
 
     @Override
@@ -28,6 +33,8 @@ public class ReturnObjectImpl implements ReturnObject {
         if ( value == false )return ErrorMessage.NO_ERROR;
 
         else return null;
+
+
     }
 
     @Override
@@ -36,4 +43,6 @@ public class ReturnObjectImpl implements ReturnObject {
         if (!this.equals(null)) return this.object ;
         else return null;
     }
+
+
 }

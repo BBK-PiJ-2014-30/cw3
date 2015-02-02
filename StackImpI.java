@@ -43,13 +43,13 @@ public class StackImpI extends AbstractStack {
 
     @Override
     public ReturnObject top() {
-        ReturnObjectImpl o = (ReturnObjectImpl) internalList.get(size()-1).getReturnValue();
+        ReturnObject o =  internalList.get(size()-1);
         return o;
     }
 
     @Override
     public ReturnObject pop() {
-        ReturnObject o = (ReturnObject) internalList.get(size()-1).getReturnValue();
+        ReturnObject o = internalList.get(size()-1);
         internalList.remove(size()-1);
         return o;
     }
