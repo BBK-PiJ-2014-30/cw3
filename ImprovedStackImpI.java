@@ -79,11 +79,11 @@ public class ImprovedStackImpI implements ImprovedStack {
     @Override
     public ReturnObject top() {
 
-        if (list.isEmpty() == true)
-        {return new ReturnObjectImpl(list.get(size() - 1));}
-         else
-        {return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);}
-        }
+        if (list.isEmpty() == true){return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);}
+        else {return new ReturnObjectImpl(list.get(size() - 1));}
+
+
+    }
 
         @Override
         public ReturnObject pop () {
